@@ -22,6 +22,7 @@ function Game() {
         setSearchTerm={setSearchTerm}
         allSearch={allSearch}
         addToAllSearch={addToAllSearch}
+        answer={answer}
       />
     </>
   )
