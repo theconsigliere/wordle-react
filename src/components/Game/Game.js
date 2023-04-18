@@ -16,7 +16,7 @@ function Game() {
 
   return (
     <>
-      <GuessResults allSearch={allSearch} />
+      <GuessResults allSearch={allSearch} answer={answer} />
       <GuessInput
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
