@@ -10,12 +10,12 @@ function GuessInput({
 }) {
   const [isComplete, setCompleted] = React.useState(false)
   const [isFailed, setFailed] = React.useState(true)
-  const length = allSearch.length + 1
+  const length = allSearch.length
 
   function handleSubmit(e) {
     e.preventDefault()
     // On Submit update array
-    console.log(length, NUM_OF_GUESSES_ALLOWED)
+    //console.log(length, NUM_OF_GUESSES_ALLOWED)
 
     const newArray = [...allSearch, searchTerm].slice(0, NUM_OF_GUESSES_ALLOWED)
 
@@ -24,10 +24,18 @@ function GuessInput({
     // empty string again to clear out input after submission
     setSearchTerm("")
 
-    if (length === NUM_OF_GUESSES_ALLOWED) {
+    // retrun is user inputs less than 5 words
+    if (searchTerm.length !== 5) {
+      window.alert("Please enter exactly 5 characters")
+      return
+    }
+
+    // set completed if amount of guesses equals the max numbers of guesses
+    if (allSearch.length + 1 === NUM_OF_GUESSES_ALLOWED) {
       return setCompleted(true)
     }
 
+    // set true if guess equasl answer
     if (searchTerm === answer) {
       setFailed(false)
       return setCompleted(true)
@@ -62,6 +70,8 @@ function GuessInput({
         type="text"
         maxLength={5}
         minLength={5}
+        pattern="[a-zA-Z]{5}"
+        title="5 letter word"
         disabled={isComplete}
         value={searchTerm}
         onChange={(event) => {
